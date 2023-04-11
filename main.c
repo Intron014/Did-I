@@ -19,7 +19,7 @@ int main(){
     //}
     TASK tareas[100];
     TASK aux;
-    int items=0;
+    int items=0, seconds=0;
     int i=0, answer=99;
     unsigned patata;
     while(answer){
@@ -32,16 +32,30 @@ int main(){
                 printf("----- Current Items (%i) -----\n", items);
             }
             for(i=0;i<items;i++){
-                if(i<10){
-                    printf("0%i - %i:%i %i/%i/%i - %s\n", i, tareas[i].time.tm_hour, tareas[i].time.tm_min, tareas[i].time.tm_mday, tareas[i].time.tm_mon, tareas[i].time.tm_year+1900,  tareas[i].task);
+                if(seconds==1){
+                    if(i<10){
+                        printf("0%i - %i:%i:%i %i/%i/%i - %s\n", i, tareas[i].time.tm_hour, tareas[i].time.tm_min, tareas[i].time.tm_sec, tareas[i].time.tm_mday, tareas[i].time.tm_mon, tareas[i].time.tm_year+1900,  tareas[i].task);
 
+                    }
+                    else{
+                        printf("%i - %i:%i:%i %i/%i/%i - %s\n", i, tareas[i].time.tm_hour, tareas[i].time.tm_min, tareas[i].time.tm_sec, tareas[i].time.tm_mday, tareas[i].time.tm_mon, tareas[i].time.tm_year+1900,  tareas[i].task);
+                    }
                 }
-                else{
-                    printf("%i - %i:%i %i/%i/%i - %s\n", i, tareas[i].time.tm_hour, tareas[i].time.tm_min, tareas[i].time.tm_mday, tareas[i].time.tm_mon, tareas[i].time.tm_year+1900,  tareas[i].task);
+                else {
+                    if (i < 10) {
+                        printf("0%i - %i:%i %i/%i/%i - %s\n", i, tareas[i].time.tm_hour, tareas[i].time.tm_min,
+                               tareas[i].time.tm_mday, tareas[i].time.tm_mon, tareas[i].time.tm_year + 1900,
+                               tareas[i].task);
+
+                    } else {
+                        printf("%i - %i:%i %i/%i/%i - %s\n", i, tareas[i].time.tm_hour, tareas[i].time.tm_min,
+                               tareas[i].time.tm_mday, tareas[i].time.tm_mon, tareas[i].time.tm_year + 1900,
+                               tareas[i].task);
+                    }
                 }
             }
         }
-        printf("------------ Menu ------------\n1 - Add a task\n2 - Edit a task\n3 - Delete a task\n0 - Exit\nSelect an option: ");
+        printf("------------ Menu ------------\n1 - Add a task\n2 - Edit a task\n3 - Delete a task\n4 - Toggle seconds in tasks\n0 - Exit\nSelect an option: ");
         fflush(stdin);
         scanf("%i", &answer);
         switch (answer) {
@@ -72,11 +86,15 @@ int main(){
                             fflush(stdin);
                             printf("Introduzca nuevo nombre: ");
                             gets(&tareas[patata].task);
+                            time_t t = time(NULL);
+                            tareas[patata].time = *localtime(&t);
                         } else{
                             printf("No item :(\n");
                         }
-                        printf("Desea editar otra tarea? (Y/N)");
-                        scanf("%c", &editanswer);
+                        if(items>1) {
+                            printf("Desea editar otra tarea? (Y/N)");
+                            scanf("%c", &editanswer);
+                        }
                     }
                 }
                 else{
@@ -95,6 +113,14 @@ int main(){
                             tareas[i]=tareas[i+1];
                         }
                     }
+                }
+                break;
+            case 4:
+                if(seconds){
+                    seconds=0;
+                }
+                else{
+                    seconds=1;
                 }
                 break;
             default:
