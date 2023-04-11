@@ -20,8 +20,8 @@ I'm still trying to figure out some things but this is kinda it! Hope ya like it
 Plenty of things! This program is infinitely scalable!
 
 - [ ] Add file support
-  - that what tasks won't be lost.
 - [ ] Make it prettier
 - [ ] Edited tasks change the date
 - [ ] Add a GUI (Is that even possible?)
+  - sit tight and watch :)
 ----
