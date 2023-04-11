@@ -11,14 +11,7 @@ typedef struct task{
 
 
 int main(){
-    //TODO: File integration
-    //FILE * thefile;
-    //if(!thefile==(fopen("savedata.bin", "wb"))){
-    //    printf("The file could not be opened");
-    //    return 1;
-    //}
     TASK tareas[100];
-    TASK aux;
     int items=0, seconds=0;
     int i=0, answer=99;
     unsigned patata;
