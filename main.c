@@ -61,7 +61,7 @@ int main(){
                     tareas[items].time = *localtime(&t);
                     printf("Introduzca what you did: ");
                     fflush(stdin);
-                    gets(&tareas[items].task);
+                    gets(tareas[items].task);
                     items++;
                 }
                 else{
@@ -71,23 +71,16 @@ int main(){
             case 2:
                 //editatask();
                 if(items){
-                    char editanswer='y';
-                    while(editanswer=='y'||editanswer=='Y'){
-                        printf("Select task to edit: ");
-                        scanf("%u", &patata);
-                        if(patata<=items-1){
-                            fflush(stdin);
-                            printf("Introduzca nuevo nombre: ");
-                            gets(&tareas[patata].task);
-                            time_t t = time(NULL);
-                            tareas[patata].time = *localtime(&t);
-                        } else{
-                            printf("No item :(\n");
-                        }
-                        if(items>1) {
-                            printf("Desea editar otra tarea? (Y/N)");
-                            scanf("%c", &editanswer);
-                        }
+                    printf("Select task to edit: ");
+                    scanf("%u", &patata);
+                    if(patata<=items-1){
+                        fflush(stdin);
+                        printf("Introduzca nuevo nombre: ");
+                        gets(tareas[patata].task);
+                        time_t t = time(NULL);
+                        tareas[patata].time = *localtime(&t);
+                    } else{
+                        printf("No item :(\n");
                     }
                 }
                 else{
