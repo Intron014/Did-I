@@ -24,14 +24,24 @@ int main(){
     unsigned patata;
     while(answer){
         system("cls");
-        printf("Did I...? vpc1.0\n");
         if(items){
-            printf("----- Current Items (%i) -----\n", items);
+            if(items<10) {
+                printf("----- Current Items (0%i) -----\n", items);
+            }
+            else{
+                printf("----- Current Items (%i) -----\n", items);
+            }
             for(i=0;i<items;i++){
-                printf("%i - %i:%i %i/%i/%i - %s\n", i, tareas[i].time.tm_hour, tareas[i].time.tm_min, tareas[i].time.tm_mday, tareas[i].time.tm_mon, tareas[i].time.tm_year+1900,  tareas[i].task);
+                if(i<10){
+                    printf("0%i - %i:%i %i/%i/%i - %s\n", i, tareas[i].time.tm_hour, tareas[i].time.tm_min, tareas[i].time.tm_mday, tareas[i].time.tm_mon, tareas[i].time.tm_year+1900,  tareas[i].task);
+
+                }
+                else{
+                    printf("%i - %i:%i %i/%i/%i - %s\n", i, tareas[i].time.tm_hour, tareas[i].time.tm_min, tareas[i].time.tm_mday, tareas[i].time.tm_mon, tareas[i].time.tm_year+1900,  tareas[i].task);
+                }
             }
         }
-        printf("----- Menu -----\n1 - Add a task\n2 - Edit a task\n3 - Delete a task\n0 - Exit\nSelect an option: ");
+        printf("------------ Menu ------------\n1 - Add a task\n2 - Edit a task\n3 - Delete a task\n0 - Exit\nSelect an option: ");
         fflush(stdin);
         scanf("%i", &answer);
         switch (answer) {
